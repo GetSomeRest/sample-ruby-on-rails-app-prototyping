@@ -24,6 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand trackit nomargin" href="/"><img width="160px;" src="Autodesk_logo.png"/></a>
         </div>
@@ -31,6 +32,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><%= link_to 'Home', '/'%></li>
             <li><%= link_to 'Upload Model', '/'%></li>
+            <li><%= link_to 'View', '/'%></li>
             <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
             <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
           </ul>
@@ -40,7 +42,7 @@
 
     <div class="container">
 		
-		<h3> Hi <%= @user.key %> </h3>
+		<h3> Hi <%= @user.name %>! These are your uploaded and translated models (ready to be viewed): </h3>
 
 
 
