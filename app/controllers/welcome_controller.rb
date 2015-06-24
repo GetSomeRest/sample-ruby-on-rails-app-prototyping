@@ -7,4 +7,8 @@ class WelcomeController < ApplicationController
   	@t = response["token_type"]
   	@user = current_user
   end
+
+  def view
+  	
+  end
 end

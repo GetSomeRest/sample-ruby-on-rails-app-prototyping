@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'welcome/view'
+
   devise_for :users
   get 'welcome/index'
 
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get '/home', to: 'welcome#index'
+  get '/view', to: 'welcome#view'
 
 
 
