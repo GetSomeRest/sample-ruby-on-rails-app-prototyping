@@ -38,7 +38,7 @@ $(document).ready (function () {
 	// Access Token request code
 	$('#btnGetAccessToken').click (function (evt) {
 		$.ajax ({
-			url: 'http://murmuring-woodland-5218.herokuapp.com/api/ZC2KBGiwYvJYUds7FjtVvx2WlvtF',
+			url: 'http://murmuring-woodland-5218.herokuapp.com/api/token',
 			type: 'post',
 			data: JSON.stringify ({ 'key': $('#publicKey').val ().trim (), 'secret': $('#secretKey').val ().trim () }),
 			contentType: 'application/json',

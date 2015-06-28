@@ -3,7 +3,7 @@ var oViewDataClient =null ;
 $(document).ready (function () {
     oViewDataClient =new Autodesk.ADN.Toolkit.ViewData.AdnViewDataClient (
         'https://developer.api.autodesk.com',
-        'http://murmuring-woodland-5218.herokuapp.com/api/ywkinfClNf3wFABbTiMeWnQFy2NS'
+        'http://' + window.location.host + '/view'
     ) ;
 
     $('#btnTranslateThisOne').click (function (evt) {
@@ -13,7 +13,7 @@ $(document).ready (function () {
         var bucket =
             'model'
             + new Date ().toISOString ().replace (/T/, '-').replace (/:+/g, '-').replace (/\..+/, '')
-            + '-' + 'zheNNz920VugchVLrGE8zWX5emPSlAVD'.toLowerCase ().replace (/\W+/g, '') ;
+            + '-' + gon.key.toLowerCase ().replace (/\W+/g, '') ;
 
         createBucket (bucket, files)
     }) ;

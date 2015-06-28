@@ -30,6 +30,7 @@ gem 'rails_12factor'
 gem 'curb'
 gem 'curb-fu'
 gem 'json'
+gem 'gon'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
