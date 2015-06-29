@@ -1,0 +1,4 @@
+<h4><% @mods.each do |mod| %>
+<% modl = '/' + '?urn=' + mod.urn %>
+<a href=<%= modl %>><%= mod.title %></a><br>
+<% end %></h4>

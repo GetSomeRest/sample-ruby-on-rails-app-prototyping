@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'welcome/view'
 
+  resources :mods
+
   devise_for :users
   get 'welcome/index'
 
