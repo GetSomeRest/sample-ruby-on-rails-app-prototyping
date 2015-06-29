@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'welcome/upload'
+
   get 'welcome/view'
 
   devise_for :users
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get '/home', to: 'welcome#index'
+  get '/upload', to: 'welcome#upload'
   get '/view', to: 'welcome#view'
 
 
