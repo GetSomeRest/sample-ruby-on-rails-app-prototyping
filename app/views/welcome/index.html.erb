@@ -1,10 +1,48 @@
+  <head>
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css" type="text/css">
+<script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+    <script>
+function initialize() {
+var options = {
+'document' : 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE1LTA2LTI5LTAwLTMxLTUzLXpoZW5uejkyMHZ1Z2NodmxyZ2U4end4NWVtcHNsYXZkL0RyYXdpbmcuZHdn',
+'getAccessToken': getToken
+};
 
-		
-		<h3> Hi <%= @user.name %>! These are your uploaded and translated models (ready to be viewed): </h3>
+var viewerElement = document.getElementById('viewer');
+var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
 
-    <%= @t %>
-    <%= @s %>
+ 
+ Autodesk.Viewing.Initializer(options, function() {
+        viewer.initialize();
+        loadDocument(viewer, Autodesk.Viewing.Private.getAuthObject(), options.document);
 
+    });
+}
 
+// This method returns a valid access token  For the Quick Start we are just returning the access token
+// we obtained in step 2.  In the real world, you would never do this.
+function getToken() {
+    return "DAu69atAbdxkR2sWEub7Emayksqe";
+}
 
+function loadDocument(viewer, documentId) {
+    // Find the first 3d geometry and load that.
+    Autodesk.Viewing.Document.load(documentId, function(doc) {// onLoadCallback
+    var geometryItems = [];
+    geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+        'type' : 'geometry',
+        'role' : '3d'
+    }, true);
 
+    if (geometryItems.length > 0) {
+        viewer.load(doc.getViewablePath(geometryItems[0]));
+    }
+ }, function(errorMsg) {// onErrorCallback
+    alert("Load Error: " + errorMsg);
+    });
+}
+</script>
+  </head>
+  <body>
+  <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
+</body>
