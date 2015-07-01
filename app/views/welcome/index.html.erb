@@ -12,6 +12,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){    
+        //Check if the current URL contains '#'
+        if(document.URL.indexOf("#")==-1){
+        // Set the URL to whatever it was plus "#".
+        url = document.URL+"#";
+        location = "#";
+
+        //Reload the page
+        location.reload(true);
+        }
+    });
+    </script>
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.13" type="text/css">
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.13"></script>
 </head>
 <body onload="initialize();">
     <div id="nav-bar" class="navbar navbar-default app-navbar">
@@ -38,8 +53,51 @@
     </div>
 
     <div class="container">
-    Please refresh page if uploading doesn't work! (Temporary note: will fix soon)
   <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
 </div>
 </body>
+<script>
+    // change the token and urn(translated file location) before you try to run
+    // easiest is to go through steps on http://shiya.github.io/Intro-View-and-Data/
+    var token = gon.token
+    var urn = gon.urn
+
+    function getToken() {
+        return token;
+    }
+    function loadDocument(viewer, documentId) {
+        // Find the first 3d geometry and load that.
+        Autodesk.Viewing.Document.load(documentId, function(doc) {
+        var geometryItems = [];
+        geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+            'type' : 'geometry',
+            'role' : '3d'
+        }, true);
+
+        if (geometryItems.length > 0) {
+            viewer.load(doc.getViewablePath(geometryItems[0]));
+        }
+     }, function(errorMsg) {// onErrorCallback
+        alert("Load Error: " + errorMsg);
+        });
+    }
+    
+    function initialize() {
+        var options = {
+            'document' : 'urn:' + urn,
+            'env':'AutodeskProduction',
+            'getAccessToken': getToken,
+            'refreshToken': getToken,
+            };
+        var viewerElement = document.getElementById('viewer');
+        var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
+
+        Autodesk.Viewing.Initializer(options,function() {
+            viewer.initialize();
+            loadDocument(viewer, options.document);
+        });
+    }
+    
+    initialize();
+</script>
 </html>

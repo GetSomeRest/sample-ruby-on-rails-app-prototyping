@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
     <title>ADN Viewer Demo (client upload)</title>
 
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -25,6 +26,19 @@
     <!-- Autodesk.ADN.Toolkit.Viewer -->
     <script src=" p.js"></script>
     <script src="/upload.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){    
+        //Check if the current URL contains '#'
+        if(document.URL.indexOf("#")==-1){
+        // Set the URL to whatever it was plus "#".
+        url = document.URL+"#";
+        location = "#";
+
+        //Reload the page
+        location.reload(true);
+        }
+    });
+    </script>
 </head>
 
 <body onload="initialize();">
@@ -55,7 +69,7 @@
   <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Upload and translate a file (Please refresh page if uploading doesn't work the first time)</h3> 
+                <h3 class="panel-title">Upload and translate a file </h3> 
 
             </div>
             <div class="panel-body">
@@ -74,13 +88,13 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">My URNs</h3>
+                <h3 class="panel-title">Uploaded and translateds URNs</h3>
             </div>
             <div class="panel-body">
        
 
                 <legend>My URN list</legend>
-                <div>Click on a urn below to launch the viewer and copy the link to add it to a list of translated viewable models</div>
+                <div>Copy any of the following URNs and paste it in the form below with a title to add it to your URNs stored here</div>
                 <div id="list"></div>
             </div>
         </div>
@@ -89,7 +103,7 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">My URNs</h3>
+                <h3 class="panel-title">Store URNs</h3>
             </div>
             <div class="panel-body">
             	<%= form_for @mod, url: {action: "create", controller: "mods"}, html: {class: "nifty_form"} do |f| %>
@@ -97,7 +111,7 @@
     			<%= f.text_field :title %></p>
     			<p><%= f.label :urn %><br>
     			<%= f.text_field :urn %></p>
-            	<%= f.check_box :latest %> Make this the viewable<br><br>
+            	<%= f.check_box :latest %> Make this the viewable (visible to judges and on your home page)<br><br>
             	<%= f.submit "Add to my Models" %><br>
             	<% end %>
           </div>
