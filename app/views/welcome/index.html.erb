@@ -12,55 +12,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){    
-        //Check if the current URL contains '#'
-        if(document.URL.indexOf("#")==-1){
-        // Set the URL to whatever it was plus "#".
-        url = document.URL+"#";
-        location = "#";
 
-        //Reload the page
-        location.reload(true);
-        }
-    });
-    </script>
     <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.13" type="text/css">
     <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.13"></script>
-</head>
-<body onload="initialize();">
-    <div id="nav-bar" class="navbar navbar-default app-navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand trackit nomargin" href="/"><img width="160px;" src="../Autodesk_logo.png"/></a>
-        </div>
-        <div class="navbar-nav-large navbar-collapse collapse" id="navbar-user">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Home', '/'%></li>
-            <li><%= link_to 'Upload Model', '/upload'%></li>
-            <li><%= link_to 'View', '/view'%></li>
-            <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
-            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-  <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
-</div>
-</body>
-<script>
+    <script>
     // change the token and urn(translated file location) before you try to run
     // easiest is to go through steps on http://shiya.github.io/Intro-View-and-Data/
     var token = gon.token
     var urn = gon.urn
+
+    $(document).ready(function () {
+    if(window.location.href.indexOf("urn") > -1) {
+       
+    }
+    });
 
     function getToken() {
         return token;
@@ -99,5 +64,34 @@
     }
     
     initialize();
-</script>
+    </script>
+</head>
+<body onload="initialize();">
+    <div id="nav-bar" class="navbar navbar-default app-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand trackit nomargin" href="/"><img width="160px;" src="../Autodesk_logo.png"/></a>
+        </div>
+        <div class="navbar-nav-large navbar-collapse collapse" id="navbar-user">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', '/'%></li>
+            <li><%= link_to 'Upload Model', '/upload'%></li>
+            <li><%= link_to 'View', '/view'%></li>
+            <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+  <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
+</div>
+</body>
 </html>
