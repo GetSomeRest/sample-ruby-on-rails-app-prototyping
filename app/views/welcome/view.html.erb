@@ -1,5 +1,7 @@
 
-
-<h4><% @mods.each do |mod| %>
-<a href=<%= '/' + '?urn=' + mod.urn %> style="text-decoration: none"><%= mod.title %></a><br>
-<% end %></h4>
+<% if @mods.count == 0 %>
+	<h4>You have not stored any URNs yet! Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
+<% end %>
+	<h4><% @mods.each do |mod| %>
+	<a href=<%= '/' + '?urn=' + mod.urn %> style="text-decoration: none"><%= mod.title %></a><br>
+	<% end %></h4>
