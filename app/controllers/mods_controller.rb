@@ -10,6 +10,6 @@ class ModsController < ApplicationController
   end
   private
   def mod_params
-    params.require(:mod).permit(:title, :latest, :urn)
+    params.require(:mod).permit(:title, :latest, :urn, :uid)
   end
 end

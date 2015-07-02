@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
   end
 
   def upload
+    @user = current_user
     token = JSON.parse(CurbFu.post({:host => 'developer.api.autodesk.com', :path => '/authentication/v1/authenticate', :protocol => "https"}, { :client_id => current_user.key, :client_secret => current_user.secret, :grant_type => 'client_credentials' }).body)
   	gon.token = token["access_token"]
     gon.key  = current_user.key
@@ -14,6 +15,6 @@ class WelcomeController < ApplicationController
   end
 
   def view
-    @mods = Mod.all
+    @mods = Mod.where(uid: current_user.id)
   end
 end
