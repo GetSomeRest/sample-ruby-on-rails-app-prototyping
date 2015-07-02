@@ -1,7 +1,5 @@
 
 
-<div class="container">
 <h4><% @mods.each do |mod| %>
 <a href=<%= '/' + '?urn=' + mod.urn %> style="text-decoration: none"><%= mod.title %></a><br>
 <% end %></h4>
-</div>
