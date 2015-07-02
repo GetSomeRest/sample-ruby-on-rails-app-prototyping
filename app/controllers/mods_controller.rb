@@ -6,7 +6,7 @@ class ModsController < ApplicationController
   	@mod = Mod.new(mod_params)
  
   	@mod.save
-  	redirect_to '/'
+  	redirect_to '/view'
   end
   private
   def mod_params
