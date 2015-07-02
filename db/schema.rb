@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629030622) do
+ActiveRecord::Schema.define(version: 20150702193831) do
 
   create_table "mods", force: :cascade do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150629030622) do
     t.text     "urn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "uid"
   end
 
   create_table "users", force: :cascade do |t|
