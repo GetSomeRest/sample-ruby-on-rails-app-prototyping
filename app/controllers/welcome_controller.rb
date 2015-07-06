@@ -1,9 +1,13 @@
 class WelcomeController < ApplicationController
   def index
+    print request.original_url
   	@user = current_user
-    if Mod.all.count == 0
+    if request.original_url.include?("urn")
+      @status = "works"
+    elsif Mod.all.count == 0
       @status = "none"
     elsif Mod.where(:uid => current_user.id).where(:latest => true).count != 0
+      @status = "works"
       gon.urn = Mod.where(:uid => current_user.id).where(:latest => true).first.urn
     else
       @status = "noviewable"
