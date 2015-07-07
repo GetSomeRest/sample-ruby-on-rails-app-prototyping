@@ -24,6 +24,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :Judge_Password %> (Please only fill in this feild if you're signing up as a viewer/judge)<br />
+    <%= f.text_field :judgep %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702193831) do
+ActiveRecord::Schema.define(version: 20150707181008) do
 
   create_table "mods", force: :cascade do |t|
     t.string   "title"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20150702193831) do
     t.string   "name"
     t.string   "key"
     t.string   "secret"
+    t.string   "judgep"
+    t.boolean  "judge"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

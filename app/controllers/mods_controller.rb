@@ -4,7 +4,6 @@ class ModsController < ApplicationController
  
   def create
   	@mod = Mod.new(mod_params)
- 
   	if @mod.save
       if @mod.latest
         if Mod.where(:uid => current_user.id).where(:latest => true).count > 1
