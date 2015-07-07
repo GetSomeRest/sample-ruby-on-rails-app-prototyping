@@ -59,6 +59,8 @@
     <div class="container">
         <% if @status == "works" %>
             <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
+        <% elsif @status == "judge" %>
+            Yo
         <% elsif @status == "none" %>
             <h4> You currently have no uploaded models. Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
         <% elsif @status == "noviewable" %>
