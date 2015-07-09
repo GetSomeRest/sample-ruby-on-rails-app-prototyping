@@ -1,7 +1,13 @@
+    <% if @status == "noview" %>
+	  	<h4> Please select a user for a viewable! Go to <%= link_to('Home', '/home') %> </h4>
+	<% elsif  @status == "judge" %>
+	
+	<% else %>
+		<% if @mods.count == 0 %>
+			<h4>You have not stored any URNs yet! Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
+		<% end %>
+			<h4><% @mods.each do |mod| %>
+			<a href=<%= '/' + '?urn=' + mod.urn %> style="text-decoration: none"><%= mod.title %></a><br>
+			<% end %></h4>
+	<% end %>
 
-<% if @mods.count == 0 %>
-	<h4>You have not stored any URNs yet! Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
-<% end %>
-	<h4><% @mods.each do |mod| %>
-	<a href=<%= '/' + '?urn=' + mod.urn %> style="text-decoration: none"><%= mod.title %></a><br>
-	<% end %></h4>

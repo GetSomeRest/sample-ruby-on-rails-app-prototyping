@@ -38,7 +38,11 @@ class WelcomeController < ApplicationController
 
   def view
     if current_user.judge
-      @status = "judge"
+      if request.original_url.include?("uid")
+        @status = "judge"
+      else
+        @status = "noview"
+      end
     end
     @mods = Mod.where(uid: current_user.id)
   end
