@@ -64,8 +64,10 @@
             <h5>
             <% x = 1 %>
             <% @users.each do |user| %>
+                <% if !user.judge %>
                 <a href=<%= '/view' + '?uid=' + user.id.to_s %> style="text-decoration: none"><%= x %>. <%= user.name %></a><br>
                 <% x += 1 %>
+                <% end %>
             <% end %>
             </h5>
         <% elsif @status == "none" %>
@@ -74,6 +76,6 @@
             <h4> You currently have no viewable. Translate and store URNs by going to <a href=<%= '/upload'%> style="text-decoration: none"> Upload </a> </h4>
         
         <% end %>
-</div>
+    </div>
 </body>
 </html>

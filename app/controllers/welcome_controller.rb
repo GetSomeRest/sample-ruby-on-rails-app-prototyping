@@ -39,11 +39,24 @@ class WelcomeController < ApplicationController
   def view
     if current_user.judge
       if request.original_url.include?("uid")
-        @status = "judge"
+        if Mod.where(:uid => params[:uid]).count == 0
+          @status = "nomodel"
+        elsif Mod.where(:uid => params[:uid]).where(:latest => true).count == 0
+          @status = "noviewable"
+        else
+          @status = "judge"
+          @model = Mod.where(:uid => params[:uid]).where(:latest => true).first
+          gon.urn = @model.urn
+          @user = User.find(params[:uid])
+          @check = @user.key
+          token = JSON.parse(CurbFu.post({:host => 'developer.api.autodesk.com', :path => '/authentication/v1/authenticate', :protocol => "https"}, { :client_id => @user.key, :client_secret => @user.secret, :grant_type => 'client_credentials' }).body)
+          gon.token = token["access_token"]
+        end
       else
         @status = "noview"
       end
+    else
+      @mods = Mod.where(uid: current_user.id)
     end
-    @mods = Mod.where(uid: current_user.id)
   end
 end
