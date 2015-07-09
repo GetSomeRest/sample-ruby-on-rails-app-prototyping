@@ -69,9 +69,9 @@
             <% end %>
             </h5>
         <% elsif @status == "none" %>
-            <h4> You currently have no uploaded models. Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
+            <h4> You currently have no uploaded models. Translate and store URNs by going to <a href=<%= '/upload'%> style="text-decoration: none"> Upload </a> </h4>
         <% elsif @status == "noviewable" %>
-            <h4> You currently have no viewable. Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
+            <h4> You currently have no viewable. Translate and store URNs by going to <a href=<%= '/upload'%> style="text-decoration: none"> Upload </a> </h4>
         
         <% end %>
 </div>
