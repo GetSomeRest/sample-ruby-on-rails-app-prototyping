@@ -60,7 +60,14 @@
         <% if @status == "works" %>
             <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
         <% elsif @status == "judge" %>
-            Yo
+            <h4> Click on a User's name for the viewable: </h4>
+            <h5>
+            <% x = 1 %>
+            <% @users.each do |user| %>
+                <a href=<%= '/view' + '?uid=' + user.id.to_s %> style="text-decoration: none"><%= x %>. <%= user.name %></a><br>
+                <% x += 1 %>
+            <% end %>
+            </h5>
         <% elsif @status == "none" %>
             <h4> You currently have no uploaded models. Translate and store URNs by going to <%= link_to('Upload', '/upload') %> </h4>
         <% elsif @status == "noviewable" %>
