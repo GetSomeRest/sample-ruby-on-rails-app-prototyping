@@ -56,7 +56,6 @@
 </head>
 <body onload="initialize();">  
 
-	<div class="container">
     <% if @status == "noview" %>
 	  	<h4> Please select a user for a viewable! <a href=<%= '/home'%> style="text-decoration: none"> Go back Home </a> </h4>
 	<% elsif  @status == "nomodel" %>
@@ -75,7 +74,6 @@
 			<% end %></h4>
 	<% end %>
 
-	</div>
 </body>
 </html>
 
