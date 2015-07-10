@@ -24,8 +24,8 @@ class WelcomeController < ApplicationController
       else
         @status = "noviewable"
       end
-      @user = current_user
     end
+    @user = current_user
   end
 
   def upload
@@ -37,6 +37,7 @@ class WelcomeController < ApplicationController
   end
 
   def view
+    @main = current_user
     if current_user.judge
       if request.original_url.include?("uid")
         if Mod.where(:uid => params[:uid]).count == 0

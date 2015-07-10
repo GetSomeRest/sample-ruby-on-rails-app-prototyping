@@ -1,3 +1,25 @@
+<div id="nav-bar" class="navbar navbar-default app-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand trackit nomargin" href="/"><img width="160px;" src="../Autodesk_logo.png"/></a>
+        </div>
+        <div class="navbar-nav-large navbar-collapse collapse" id="navbar-user">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', '/'%></li>
+            <li><%= link_to 'Upload Model', '/upload'%></li>
+            <li><%= link_to 'View', '/view'%></li>
+            <li class = "active"><%= link_to('Log In/Sign Up', '/') %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -50,3 +72,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

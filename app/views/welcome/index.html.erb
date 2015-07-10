@@ -55,6 +55,31 @@
     </script>
 </head>
 <body onload="initialize();">
+    <div id="nav-bar" class="navbar navbar-default app-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand trackit nomargin" href="/"><img width="160px;" src="../Autodesk_logo.png"/></a>
+        </div>
+        <div class="navbar-nav-large navbar-collapse collapse" id="navbar-user">
+          <ul class="nav navbar-nav">
+            <li class = "active"><%= link_to 'Home', '/'%></li>
+            <% if !@user.judge %>
+            <li><%= link_to 'Upload Model', '/upload'%></li>
+            <% end %>
+            <li><%= link_to 'View', '/view'%></li>
+            <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
 
         <% if @status == "works" %>
             <div id="viewer" style="position:absolute; width:90%; height:80%;"></div>
@@ -75,5 +100,6 @@
             <h4> You currently have no viewable. Translate and store URNs by going to <a href=<%= '/upload'%> style="text-decoration: none"> Upload </a> </h4>
         
         <% end %>
+</div>
 </body>
 </html>

@@ -56,6 +56,32 @@
 </head>
 <body onload="initialize();">  
 
+    <div id="nav-bar" class="navbar navbar-default app-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand trackit nomargin" href="/"><img width="160px;" src="../Autodesk_logo.png"/></a>
+        </div>
+        <div class="navbar-nav-large navbar-collapse collapse" id="navbar-user">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', '/'%></li>
+            <% if !@main.judge %>
+            <li><%= link_to 'Upload Model', '/upload'%></li>
+            <% end %>
+            <li class = "active"><%= link_to 'View', '/view'%></li>
+            <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
     <% if @status == "noview" %>
 	  	<h4> Please select a user for a viewable! <a href=<%= '/home'%> style="text-decoration: none"> Go back Home </a> </h4>
 	<% elsif  @status == "nomodel" %>
@@ -73,7 +99,7 @@
 			<a href=<%= '/' + '?urn=' + mod.urn %> style="text-decoration: none"><%= mod.title %></a><br>
 			<% end %></h4>
 	<% end %>
-
+</div>
 </body>
 </html>
 
