@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
     current_user.save
     if current_user.judge
       @status = "judge"
-      @users = User.all
+      @users = User.where.not(judge: true)
     else
       if request.original_url.include?("urn")
         @status = "works"
