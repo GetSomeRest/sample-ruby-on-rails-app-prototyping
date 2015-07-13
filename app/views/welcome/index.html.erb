@@ -86,12 +86,16 @@
         <% elsif @status == "judge" %>
             <h4> Click on a User's name for the viewable: </h4>
             <h5>
+            <% if @users.count == 0 %>
+            Sorry, no users found!
+            <% else %>
             <% x = 1 %>
             <% @users.each do |user| %>
                 <% if !user.judge %>
                 <a href=<%= '/view' + '?uid=' + user.id.to_s %> style="text-decoration: none"><%= x %>. <%= user.name %></a><br>
                 <% x += 1 %>
                 <% end %>
+            <% end %>
             <% end %>
             </h5>
         <% elsif @status == "none" %>
