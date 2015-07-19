@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'welcome/angelh'
+
   get 'welcome/upload'
 
   get 'welcome/view'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   get '/home', to: 'welcome#index'
   get '/upload', to: 'welcome#upload'
   get '/view', to: 'welcome#view'
+  get '/angelh', to: 'welcome#angelh'
 
 
 

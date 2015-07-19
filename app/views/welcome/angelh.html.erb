@@ -1,0 +1,82 @@
+  <html>
+  <head>
+
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.13" type="text/css">
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.13"></script>
+    <script>
+    // change the token and urn(translated file location) before you try to run
+    // easiest is to go through steps on http://shiya.github.io/Intro-View-and-Data/
+    var token = gon.token
+    var urn = gon.urn
+
+    $(document).ready(function () {
+    if(window.location.href.indexOf("urn") > -1) {
+       urn = window.location.href.substring(window.location.href.indexOf("urn")+4);
+    }
+    });
+
+    function getToken() {
+        return token;
+    }
+    function loadDocument(viewer, documentId) {
+        // Find the first 3d geometry and load that.
+        Autodesk.Viewing.Document.load(documentId, function(doc) {
+        var geometryItems = [];
+        geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+            'type' : 'geometry',
+            'role' : '3d'
+        }, true);
+
+        if (geometryItems.length > 0) {
+            viewer.load(doc.getViewablePath(geometryItems[0]));
+        }
+     }, function(errorMsg) {// onErrorCallback
+        alert("Load Error: " + errorMsg);
+        });
+    }
+    
+    function initialize() {
+        var options = {
+            'document' : 'urn:' + urn,
+            'env':'AutodeskProduction',
+            'getAccessToken': getToken,
+            'refreshToken': getToken,
+            };
+        var viewerElement = document.getElementById('viewer');
+        var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
+
+        Autodesk.Viewing.Initializer(options,function() {
+            viewer.initialize();
+            loadDocument(viewer, options.document);
+        });
+    }
+    
+    initialize();
+    </script>
+</head>
+<body onload="initialize();">
+
+
+        <% if @status == "works" %>
+            <div id="viewer" style="position:absolute; width:100%; height:100%;"></div>
+        <% elsif @status == "judge" %>
+            <% if @users.count == 0 %>
+            <h4> Sorry, no users found! </h4>
+            <% else %>
+            <h4> Click on a User's name for the viewable: </h4>
+            <h5>
+            <% x = 1 %>
+            <% @users.each do |user| %>
+                <a href=<%= '/view' + '?uid=' + user.id.to_s %> style="text-decoration: none"><%= x %>. <%= user.name %></a><br>
+                <% x += 1 %>
+            <% end %>
+            <% end %>
+            </h5>
+        <% elsif @status == "none" %>
+            <h4> You currently have no uploaded models. Translate and store URNs by going to <a href=<%= '/upload'%> style="text-decoration: none"> Upload </a> </h4>
+        <% elsif @status == "noviewable" %>
+            <h4> You currently have no viewable. Translate and store URNs by going to <a href=<%= '/upload'%> style="text-decoration: none"> Upload </a> </h4>
+        
+        <% end %>
+</body>
+</html>
