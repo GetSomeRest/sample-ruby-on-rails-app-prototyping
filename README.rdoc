@@ -1,4 +1,4 @@
-# sample-ruby-on-rails-app-prototyping
+sample-ruby-on-rails-app-prototyping
 
 [![Ruby](https://img.shields.io/badge/Ruby-v2.2.2-red.svg)](https://www.ruby-lang.org/en/)
 [![Rails](https://img.shields.io/badge/Rails-v4.2.2-brightgreen.svg)](http://rubyonrails.org/)
