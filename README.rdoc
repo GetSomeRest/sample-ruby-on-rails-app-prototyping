@@ -1,1 +1,0 @@
-This Ruby on Rails application is meant to allow users to register and upload models made in over 60 different file formats. Users can store URNs, view their uploaded models and set publically visible viewables. A judge password allows judges to register and view the user set viewables. Go get your consumer key and secret at developer.autodesk.com!
