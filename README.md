@@ -35,6 +35,32 @@ Here is a simple documented ruby on rails app built using this gem: [adn_viewer_
 
 The gem source code can be found here: [adn_viewer](https://github.com/Developer-Autodesk/adn_viewer)
 
+##Setup
+
+If you would like to setup this app locally, please follow these steps:
+
+Follow the instructions here to install Ruby and Ruby on Rails: [rubyonrails.org/download](http://rubyonrails.org/download/). <br />
+Note: some sort of package management is recommended with Ruby and RoR. For example, [RVM](https://rvm.io/) is perfect for the job.  <br />
+Once you've downloaded Ruby, install Rails (this can take a very long while):
+```
+gem install rails
+```
+Clone this repo onto your own machine and go into the directory of the app: ```cd sample-ruby-on-rails-app-prototyping```
+
+Now install the bundle and migrate the databases:
+```
+bundle install
+rake db:migrate
+rake db:setup
+```
+
+Finally fire up a server and voila, your app works!
+```
+rails server
+```
+
+
+
 --------
 
 ## License
