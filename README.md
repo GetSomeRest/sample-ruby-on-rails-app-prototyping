@@ -47,6 +47,7 @@ gem install rails
 ```
 Clone this repo onto your own machine and go into the directory of the app: ```cd sample-ruby-on-rails-app-prototyping```
 
+IMPORTANT: Add the appropriate secrets.yml and database.yml files to the config folder. These have been deleted for security reasons. <br />
 Now install the bundle and migrate the databases:
 ```
 bundle install
